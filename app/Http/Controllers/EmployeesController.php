@@ -17,6 +17,15 @@ class EmployeesController extends Controller
     $categories = DB::select(DB::raw(
       "select category from employees group by category"
     ));
+
+    $employee_categories = DB::select(DB::raw(
+      "select count(*) as winners from employees where winner = 1 and category = 'Nursing Service'"
+    ));
+
+    $raffle_winners = DB::select(DB::raw(
+      "select expected_winners from raffles"
+    ));
+
     return $categories;
   }
 }

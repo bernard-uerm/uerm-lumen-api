@@ -18,3 +18,8 @@ $router->get('/', function () use ($router) {
 $router->get('employees', 'EmployeesController@index');
 $router->get('raffles', 'RafflesController@index');
 $router->get('categories', 'EmployeesController@categories');
+
+$router->get('getRandomWinners', 'RaffleWinnersController@getRandomWinners');
+$router->get('getCurrentWinners', 'RaffleWinnersController@getCurrentWinners');
+
+$router->post('setWinners', 'RaffleWinnersController@setWinners');
