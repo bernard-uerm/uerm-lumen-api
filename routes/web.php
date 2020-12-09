@@ -21,5 +21,7 @@ $router->get('categories', 'EmployeesController@categories');
 
 $router->get('getRandomWinners', 'RaffleWinnersController@getRandomWinners');
 $router->get('getCurrentWinners', 'RaffleWinnersController@getCurrentWinners');
+$router->get('getFinalWinners', 'RaffleWinnersController@getFinalWinners');
 
 $router->post('setWinners', 'RaffleWinnersController@setWinners');
+$router->post('saveEmployees', 'EmployeesController@saveEmployees');

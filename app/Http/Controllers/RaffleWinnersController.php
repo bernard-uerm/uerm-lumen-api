@@ -27,7 +27,6 @@ class RaffleWinnersController extends Controller
     if($request->isMethod('post')) {
 
       $raffles = $request->all();
-      
       // foreach($raffles as $raffle_val) {
         // print_r($raffle_val);
         $raffle_encode = json_encode($raffles);
@@ -76,15 +75,27 @@ class RaffleWinnersController extends Controller
 
     if($expected_winners[0]->expected_winners <= $current_winners[0]->current_winners) {
       return response()->json([
-        'status' => 'Completed', 
+        'status' => 'Complete', 
         'expectedWinners' => $expected_winners[0]->expected_winners, 
         'currentWinners' => $current_winners[0]->current_winners
       ]);
     } else {
       return response()->json([
+        'status' => 'Incomplete',
         'expectedWinners' => $expected_winners[0]->expected_winners, 
         'currentWinners' => $current_winners[0]->current_winners
       ]);
     }
+  }
+
+  public function getFinalWinners(Request $request)
+  {
+    $raffle_id = $request->raffleID;
+    $category = $request->category;
+    $final_winners = DB::select(DB::raw(
+      "select * from vw_rafflewinners where raffle_id = '$raffle_id' and category = '$category'"
+    ));
+
+    return $final_winners;
   }
 }
