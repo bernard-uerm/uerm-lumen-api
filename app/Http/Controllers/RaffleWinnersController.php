@@ -70,20 +70,24 @@ class RaffleWinnersController extends Controller
     ));
 
     $current_winners = DB::select(DB::raw(
-      "select count(*) as current_winners from vw_rafflewinners where raffle_id = '$raffle_id'"
+      "select * from vw_rafflewinners where raffle_id = '$raffle_id'"
     ));
 
-    if($expected_winners[0]->expected_winners <= $current_winners[0]->current_winners) {
+    $count_current_winners = count($current_winners);
+
+    if($expected_winners[0]->expected_winners <= $count_current_winners) {
       return response()->json([
         'status' => 'Complete', 
         'expectedWinners' => $expected_winners[0]->expected_winners, 
-        'currentWinners' => $current_winners[0]->current_winners
+        'currentWinners' => $count_current_winners,
+        'currentDetailedWinners' => $current_winners
       ]);
     } else {
       return response()->json([
         'status' => 'Incomplete',
         'expectedWinners' => $expected_winners[0]->expected_winners, 
-        'currentWinners' => $current_winners[0]->current_winners
+        'currentWinners' => $count_current_winners,
+        'currentDetailedWinners' => $current_winners
       ]);
     }
   }
