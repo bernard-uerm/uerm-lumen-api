@@ -102,4 +102,13 @@ class RaffleWinnersController extends Controller
 
     return $final_winners;
   }
+
+  public function getAllWinners()
+  {
+    $all_winners = DB::select(DB::raw(
+      "select * from vw_rafflewinners"
+    ));
+
+    return $all_winners;
+  }
 }
