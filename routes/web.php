@@ -23,6 +23,7 @@ $router->get('getRandomWinners', 'RaffleWinnersController@getRandomWinners');
 $router->get('getCurrentWinners', 'RaffleWinnersController@getCurrentWinners');
 $router->get('getFinalWinners', 'RaffleWinnersController@getFinalWinners');
 $router->get('getAllWinners', 'RaffleWinnersController@getAllWinners');
+$router->get('clearWinners', 'AdminController@clearWinners');
 
 $router->post('setWinners', 'RaffleWinnersController@setWinners');
 $router->post('saveEmployees', 'EmployeesController@saveEmployees');
